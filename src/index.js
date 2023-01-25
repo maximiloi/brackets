@@ -10,15 +10,14 @@ module.exports = function check(str, bracketsConfig) {
 
     for (let i = 0; i < str.length; i++) {
         let currentSymbol = str[i];
+        let topElement = stack[stack.length - 1];
 
-        if (OPEN_BRACKETS.includes(currentSymbol)) {
+        if (OPEN_BRACKETS.includes(currentSymbol) && topElement != currentSymbol) {
             stack.push(currentSymbol);
         } else {
             if (stack.length === 0) {
                 return false;
             }
-
-            let topElement = stack[stack.length - 1];
 
             if (BRACKETS_PAIR[currentSymbol] === topElement) {
                 stack.pop();
